@@ -1,0 +1,93 @@
+CSS
+
+
+/* 1. Contenedor Principal */
+.nav-container {
+    position: fixed;
+    height: 100px;
+    width: 100%;
+    background-color: blue;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding: 10px 0;
+   z-index: 1000;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px; /* Espacio para diferenciar del contenido */
+}
+ul.ulclass{
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+   
+}
+/* ======================================= */
+/* 2. Enlace de Navegación */
+/* ======================================= */
+li.nav-link {
+    /* Reseteo y Tipografía */
+    text-decoration: none;
+  
+
+    font-size: 16px;
+    font-weight: 600;
+    color: #666;
+    padding-bottom: 10px; 
+    padding-bottom: 10px; /* Espacio para la línea */
+    position: relative; /* **Clave:** Contenedor para la línea ::after */
+    display: inline-block; /* Asegura que el enlace solo ocupe el ancho del texto */
+    
+    /* Transición para el color del texto */
+    transition: color 0.3s ease;
+}
+
+/* ======================================= */
+/* 3. Indicador (Línea Inferior) */
+/* ======================================= */
+
+.nav-link::after {
+    content: ''; /* Obligatorio para pseudo-elementos */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%; /* La línea abarca todo el ancho del enlace */
+    height: 3px;
+    border-radius: 1px;
+    
+    /* Color de la línea (tomado de la variable CSS) */
+    background-color:blue; 
+    
+    /* 🔑 Animación: Transición para el crecimiento y color */
+    transition: transform 0.3s ease-out, background-color 0.3s ease; 
+    
+    /* 🔑 Estado inicial: Encogido (invisible) */
+    transform: scaleX(0); 
+    
+    /* Define el punto de origen del crecimiento (de izquierda a derecha) */
+    transform-origin: left; 
+}
+
+/* ======================================= */
+/* 4. Estados Activos (Hover/Focus/Ruta Activa) */
+/* ======================================= */
+
+/* ⬆️ Efecto de Crecimiento: La línea crece al 100% de su ancho */
+.nav-link:hover::after,
+.nav-link:focus::after,
+.nav-link.active::after {
+    transform: scaleX(1); 
+}
+
+/* 🎨 Cambio de Color del Texto */
+.nav-link.active,
+.nav-link:hover {
+    color: rgb(4, 4, 101); /* El texto toma el color de la línea */
+}
