@@ -1,46 +1,74 @@
-import { Link } from 'react-router-dom';
-import './navbar.css'; // ⬅️ Importamos los estilos
+import { Link } from 'react-router-dom'; 
+import { NavLink } from 'react-router-dom'; 
+import './navbar.css'; 
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import { useState } from 'react';
 
-/* // 🗺️ Definición de los enlaces de la barra de navegación
 const navItems = [
-  { path: '/pokedex', label: 'PokéDex', color: '#1a75ff' }, // Azul
-  { path: '/my-team', label: 'My Team', color: '#ff4d4d' },    // Rojo
-  { path: '/battles', label: 'Battles', color: '#66cc99' },    // Verde
-  { path: '/profile', label: 'Profile', color: '#ffd966' },  // Amarillo
+    { path: 'Index', label: 'Inicio' },
+    { path: 'Pokedex', label: 'Vista detallada' },
+    { path: 'Pokekards', label: 'Pokemons' },
 ];
-
-// ---------------------------------------------------- */
-
 function NavBar() {
-  return (
-    <nav className="nav-container">
+   const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const handleMenuToggle = () => {
+        setIsMenuOpen((prev) => !prev);
+    };
+
+  return (<>   
+ 
+    <Box className='app-bar-container' sx={{ flexGrow: 1 }}>
+      <AppBar position="static">
+        <Toolbar>
+            <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+             onClick={handleMenuToggle}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            
+          </Typography>
+          <img src="src/assets/logo_pokemon-removebg-preview.png" className="pkimage" alt="logo pokemon" />
+           <div className={`nav-menu-wrapper ${isMenuOpen ? 'visible' : 'hidden'}`}>
+                        <ul className="ulclass">
+                            {navItems.map((item) => (
+                                // Al hacer clic, navegamos y cerramos el menú
+                                <li key={item.path} onClick={handleMenuToggle}> 
+                                    <NavLink 
+                                        to={item.path} 
+                                        className={({ isActive }) => `menu-nav-link ${isActive ? 'active' : ''}`}
+                                    >
+                                        {item.label}
+                                    </NavLink>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+         
+        </Toolbar>
+      </AppBar>
+    </Box>;
+  
+
+    <div className="nav-container">
+      <img src="src/assets/logo_pokemon-removebg-preview.png" className="pkimage" alt="logo pokemon" />
     <ul className="ulclass">
-        <li className="nav-link"><Link to='Index' >inicio</Link>   </li>
-        <li className="nav-link"> <Link to='Pokedex' >Vista detallada</Link>  </li>
-        <li className="nav-link">  <Link to='Pokekards' >Pokemons</Link> </li>
-        
+        <li className="nav-link"><Link to='Index' >INICIO</Link>   </li>
+        <li className="nav-link"> <Link to='Pokedex' >DETALLES</Link>  </li>
+        <li className="nav-link">  <Link to='Pokekards' >POKEMONS</Link> </li>
     </ul>
-      </nav>
+      </div>
+    </>
   )}export default NavBar;
       
 
-/* export const NavBar: React.FC = () => {
-  return (
-    <nav className="nav-container">
-     */
-      
-       /*  // El contenedor no es estrictamente necesario, pero ayuda a la organización
-        <div key={item.path} className="nav-item">
-          <NavLink
-            to={item.path}
-            className="nav-link"
-            // Asignamos la variable CSS '--indicator-color' para el color de la línea
-            style={{ 
-              '--indicator-color': item.color, 
-            } as React.CSSProperties} // Tipado para aceptar variables CSS
-          >
-            {item.label}
-          </NavLink>
-        </div>
-      ))}
-    </> */

@@ -1,93 +1,134 @@
-CSS
 
-
-/* 1. Contenedor Principal */
-.nav-container {
+.pkimage{
+    width: 120px;
+    height:80px;
+    
+}
+/*efectos mobile*/
+.nav-menu-wrapper {
+    /* 🔑 Posicionamiento: Cubre toda la pantalla por encima del contenido */
     position: fixed;
-    height: 100px;
-    width: 100%;
-    background-color: blue;
-    top: 0;
+    top: 64px; /* Ajustar a la altura de la AppBar de MUI (típico 64px) */
     left: 0;
+    width: 100%;
+    height: calc(100vh - 64px); /* Cubre el resto del viewport */
+    background-color: rgba(0, 0, 0, 0.9); /* Fondo semitransparente oscuro */
+    z-index: 100; /* Debe estar por encima del contenido de la página */
+
+    /* 🔑 Transición para el efecto de aparición/desaparición */
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+
+    /* Estado inicial: Oculto, sin interacción, fuera de la vista */
+    opacity: 0;
+    visibility: hidden;
+    /* Efecto de desplazamiento inicial (opcional, para que entre desde la izquierda) */
+    transform: translateX(-100%); 
+
+    /* Flexbox para centrar la lista dentro del wrapper si se desea */
     display: flex;
     justify-content: center;
-    align-items: center;
-    gap: 40px;
-    padding: 10px 0;
-   z-index: 1000;
-    border-bottom: 1px solid #eee;
-    margin-bottom: 20px; /* Espacio para diferenciar del contenido */
+    align-items: flex-start; /* Alinea la lista arriba */
+    padding-top: 40px;
 }
-ul.ulclass{
+.nav-menu-wrapper.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0); /* Vuelve a su posición normal */
+}
+ul.ulclass {
+    list-style: none; /* Elimina viñetas */
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* Apila los ítems verticalmente */
+    gap: 30px; /* Espacio vertical entre enlaces */
+    text-align: center; /* Centra el texto */
+}
+.menu-nav-link {
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff; /* Texto blanco para el fondo oscuro */
+    padding: 10px 20px;
+    transition: color 0.2s ease;
+    display: block; /* Para que ocupe todo el ancho del <li> */
+}
+.menu-nav-link:hover,
+.menu-nav-link.active {
+    color: #ffcc00; /* Color amarillo Pokémon */
+}
+.MuiPaper-root{
+    height: 60px;
+}
+
+/*efectos pc*/
+@media (min-width: 400px) {
+    .app-bar-container{
+        display: none;
+    }
+    
+.pkimage{
+   width: 300px;
+    height:400px;
+    top: 0;
+    
+}
+    li.nav-link a { 
+        text-decoration: none; 
+        color: inherit;
+        font-size: 30px;
+        
+        
+    }
+    li.nav-link a:hover {
+        color: blue;
+    }
+   ul.ulclass{
     list-style: none;
     display: flex;
+    flex-direction: row;
     padding: 0;
     margin: 0;
     gap: 40px;
     align-items: center;
-    justify-content: center;
-    width: 100%;
-   
+    justify-content: space-around;
+    
+    background-color: #FFFFFF;
+    
 }
-/* ======================================= */
-/* 2. Enlace de Navegación */
-/* ======================================= */
 li.nav-link {
-    /* Reseteo y Tipografía */
     text-decoration: none;
-  
-
     font-size: 16px;
     font-weight: 600;
     color: #666;
     padding-bottom: 10px; 
-    padding-bottom: 10px; /* Espacio para la línea */
-    position: relative; /* **Clave:** Contenedor para la línea ::after */
-    display: inline-block; /* Asegura que el enlace solo ocupe el ancho del texto */
-    
-    /* Transición para el color del texto */
+    position: relative; 
+    display:inline-block; 
     transition: color 0.3s ease;
 }
 
-/* ======================================= */
-/* 3. Indicador (Línea Inferior) */
-/* ======================================= */
-
 .nav-link::after {
-    content: ''; /* Obligatorio para pseudo-elementos */
+    content: ''; 
     position: absolute;
-    bottom: 0;
+    bottom: 0px;
     left: 0;
-    width: 100%; /* La línea abarca todo el ancho del enlace */
+    width: 100%; 
     height: 3px;
     border-radius: 1px;
-    
-    /* Color de la línea (tomado de la variable CSS) */
     background-color:blue; 
-    
-    /* 🔑 Animación: Transición para el crecimiento y color */
     transition: transform 0.3s ease-out, background-color 0.3s ease; 
-    
-    /* 🔑 Estado inicial: Encogido (invisible) */
     transform: scaleX(0); 
-    
-    /* Define el punto de origen del crecimiento (de izquierda a derecha) */
     transform-origin: left; 
 }
-
-/* ======================================= */
-/* 4. Estados Activos (Hover/Focus/Ruta Activa) */
-/* ======================================= */
-
-/* ⬆️ Efecto de Crecimiento: La línea crece al 100% de su ancho */
 .nav-link:hover::after,
 .nav-link:focus::after,
 .nav-link.active::after {
     transform: scaleX(1); 
 }
 
-/* 🎨 Cambio de Color del Texto */
+
 .nav-link.active,
 .nav-link:hover {
-    color: rgb(4, 4, 101); /* El texto toma el color de la línea */
+    color: rgb(4, 4, 101);
+}
 }
