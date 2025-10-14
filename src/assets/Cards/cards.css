@@ -1,0 +1,96 @@
+.pokemon-gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+    gap: 20px; /* Espacio entre las tarjetas */
+}
+
+/* Estilos para la tarjeta individual */
+.pokemon-card {
+    border: 2px solid #3b4cca; /* Azul Pokémon */
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    width: 200px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    transition: transform 0.2s; /* Pequeña animación al pasar el ratón */
+}
+
+.pokemon-card:hover {
+    transform: translateY(-5px);
+}
+
+.pokemon-card-id {
+    font-size: 0.8em;
+    color: #666;
+    text-align: right;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.pokemon-card-image {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+.pokemon-card-name {
+    margin: 5px 0 15px 0;
+    text-transform: uppercase;
+    color: #3b4cca;
+    font-size: 1.2em;
+}
+
+/* Estilos para el contenedor de tipos */
+.pokemon-types-container {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+/* Estilos para las etiquetas de tipo */
+.pokemon-type-tag {
+    background-color: #ffde00; /* Amarillo Pokémon */
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8em;
+    font-weight: bold;
+    text-transform: capitalize;
+    color: #3b4cca;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*nuevo*/
+.cardcontainer{
+    border: 2px solid black;
+    width: 300px;
+    height: 300px;
+    margin: 20px;
+    text-align: center;
+    display: inline-block;
+    background-color: lightgray;
+}
+
+.imgpokemon{
+    width: 150px;
+    height: 150px;
+}
+.tipopokemon{
+    border-radius: 10px;
+    border: 3px solid black;
+    background-color: rgb(237, 14, 14);
+    width: 100px;
+}
