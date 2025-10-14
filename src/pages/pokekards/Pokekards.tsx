@@ -1,30 +1,8 @@
 //este puede mostrar las cartas con el tipe cardpokemon
 
 import { useEffect,useState } from "react"  
-// Update the import path if the file is named 'interfaces.ts' and located in 'src/utils'
-// Update the import path to the correct location of interfaces.ts
 import { type CardPokemon } from '../../../src/assets/utils/Interfaces.ts';
-/*const BASE = 'https://pokeapi.co/api/v2';
 
-function Pokekards() {
-  const [Pokes, setPokes] = useState([]);
-  
-  useEffect(() => {
-try {
-      fetch(`${BASE}`)
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data.results);
-
-          setPokes(data.results);
-        });
-    } catch (error) {
-      console.log(error);
-    }
-
-    
-  },[] );
-  console.log(Pokes)*/
 const BASE = 'https://pokeapi.co/api/v2';
 
 function Pokekards() {

@@ -6,8 +6,7 @@ import React, { useEffect } from 'react';
 import type {Pokemon} from '../utils/Interfaces.ts';
 
 import { fetchPokemons } from '../store/CardSlice.ts'; 
-import { useAppDispatch, useAppSelector } from '../../hooks/hook.ts'; // Importa desde el archivo hooks.ts
-
+import { useAppDispatch, useAppSelector } from '../../hooks/useHook.ts'; 
 // --- Hooks tipados ---
 
 // Define los tipos de la tienda (Store)
