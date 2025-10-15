@@ -12,7 +12,7 @@ import { useState } from 'react';
 const navItems = [
     { path: 'Index', label: 'Inicio' },
     { path: 'Pokedex', label: 'Vista detallada' },
-    { path: 'Pokekards', label: 'Pokemons' },
+    { path: 'ListaPokes', label: 'Pokemons' },
 ];
 function NavBar() {
    const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -65,7 +65,7 @@ function NavBar() {
     <ul className="ulclass">
         <li className="nav-link"><Link to='Index' >INICIO</Link>   </li>
         <li className="nav-link"> <Link to='Pokedex' >DETALLES</Link>  </li>
-        <li className="nav-link">  <Link to='Pokekards' >POKEMONS</Link> </li>
+        <li className="nav-link">  <Link to='ListaPokes' >POKEMONS</Link> </li>
     </ul>
       </div>
     </>

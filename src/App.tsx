@@ -3,21 +3,26 @@ import { Route, Routes } from 'react-router-dom'
 import NavBar from './navbar/NavBar';
 import './App.css'
 import { Pokedex } from './pages/pokedex/Pokedex';
-import PokeKards from './pages/pokekards/Pokekards.tsx';
+import PokeKards from './pages/pokekardslista/PokekardsLista.tsx';
 import Index from './pages/index/Index';
 import Favoritos from './pages/favoritos/Favindex.tsx';
+import ListaPokes from './pages/pokekardslista/Pokelista.tsx';
+
 
 function App() {
 return (
     <>
     <NavBar />
-    <Favoritos />
+    
      <Routes>
+      <Route path="/ListaPokes" element={<ListaPokes/>} />
+     <Route path="/pokemon/:id" element={<Pokedex />} />
      <Route path='/Pokedex' element={<Pokedex />} /> 
      <Route path='*' element={<h1>Not Found</h1>} />
      <Route path='/index' element={<Index />}  />
      <Route path='/' element={<Index />}  />
      <Route path='/PokeKards' element={<PokeKards />}  /> 
+     <Route path='/Favoritos' element={<Favoritos />}/>
      </Routes>
      </>
    

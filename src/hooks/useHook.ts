@@ -19,6 +19,7 @@ export const useFavActions = () => {
   };
 
   const add = (fav: CardPokemon) => {
+     console.log('2. Despachando addFav con:', fav.name); 
     dispatch(addFav(fav));
   };
   return { borrarFav, add }}

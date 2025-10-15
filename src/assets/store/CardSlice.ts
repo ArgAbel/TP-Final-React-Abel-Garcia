@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { type PokemonState } from '../utils/Interfaces';// 2. Tipo para el estado completo del slice
+import { type PokemonTypeInfo, type PokemonState, type ApiPokemonDetail } from '../utils/Interfaces';// 2. Tipo para el estado completo del slice
 import { type FetchPokemonsPayload } from '../utils/Interfaces';
+import { type CardPokemon} from '../utils/Interfaces';
 // --- Interfaces para el tipado ---
 
 
@@ -27,9 +28,29 @@ export const fetchPokemons = createAsyncThunk<
       }
 
       const data = await response.json();
-      
-      return {
-        results: data.results,
+      const detailPromises = data.results.map((pokemon: PokemonTypeInfo) => 
+        fetch(pokemon.url).then(res => {
+          if (!res.ok) {
+            // Manejo de error individual (podrías hacer algo más sofisticado aquí)
+            throw new Error(`Fallo al obtener detalle de ${pokemon.name}`);
+          }
+          return res.json();
+        })
+      );
+        const detailedResults = await Promise.all(detailPromises);
+        const formattedResults: CardPokemon[] = detailedResults.map((detail: ApiPokemonDetail) => ({
+          id: detail.id,
+          name: detail.name,
+          // Usamos la imagen frontal estándar
+          images: detail.sprites.other?.['official-artwork']?.front_default 
+          || detail.sprites.front_default 
+          || '', 
+          sprites: detail.sprites,
+           types: detail.types,
+         
+        }));
+        return {
+        results: formattedResults,
         offset: offset + 20,
         hasMore: !!data.next,
       } as FetchPokemonsPayload; // Casteamos para asegurar el tipado de retorno

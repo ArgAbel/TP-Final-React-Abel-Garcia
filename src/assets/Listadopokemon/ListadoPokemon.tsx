@@ -2,8 +2,9 @@ import './cards.css';
 
 import React, { useEffect } from 'react'; 
 
+import type {CardPokemon} from '../utils/Interfaces.ts';
 
-import type {Pokemon} from '../utils/Interfaces.ts';
+
 
 import { fetchPokemons } from '../store/CardSlice.ts'; 
 import { useAppDispatch, useAppSelector } from '../../hooks/useHook.ts'; 
@@ -49,10 +50,16 @@ const Pokekard: React.FC = () => {
                 {/* Añadimos un chequeo de seguridad (list &&) para evitar fallos si Redux no está listo.
                   Esto previene el error: "Cannot read properties of undefined (reading 'map')"
                 */}
-                {list && list.map((pokemon: Pokemon) => ( 
+                {list && list.map((pokemon: CardPokemon) => ( 
                     <li key={pokemon.name}> 
                         {pokemon.name.toUpperCase()} 
-                        <small>({pokemon.url})</small>
+                        <small>({pokemon.id})</small>
+                       <span>{pokemon.types.map(t => t.type.name).join(', ')}</span>
+                        <img src={pokemon.sprites.front_default} 
+                  alt={`Sprite de ${pokemon.name}`} 
+               className="pokemon-sprite"
+                loading="lazy" // Buena práctica para imágenes que no están en la vista inicial
+                  />
                     </li>
                 ))}
             </ul>
