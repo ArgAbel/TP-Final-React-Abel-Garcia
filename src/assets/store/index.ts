@@ -22,7 +22,7 @@ const rootReducer = combineReducers({
     });
     const persistedReducer = persistReducer(favPersistConfig, rootReducer);
 export const store = configureStore({
-  reducer: rootReducer,
+ 
   reducer: persistedReducer, // Usar el reducer persistido
   // Esto evita warnings por datos no serializables de Redux Persist
   middleware: (getDefaultMiddleware) =>

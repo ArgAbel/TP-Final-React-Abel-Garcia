@@ -3,23 +3,34 @@ import { type TypedUseSelectorHook } from 'react-redux';
 import { type RootState, type AppDispatch } from '../assets/store/index.ts'; // Ajusta la ruta
 import  { addFav } from '../assets/store/FavSlices.ts';   
 import { deleteFav } from '../assets/store/FavSlices.ts';  
+
 import { type CardPokemon } from '../assets/utils/Interfaces.ts';
 
-// Usa el hook tipado de useDispatch en toda la aplicación
 export const useAppDispatch: () => AppDispatch = useDispatch;
-
-// Usa el hook tipado de useSelector en toda la aplicación
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
-export const useFavActions = () => {
+export const useFavActions = (pokemon: CardPokemon) => {
   const dispatch = useAppDispatch();
-
-  const borrarFav = (id: number) => {
-    dispatch(deleteFav(id));
+  
+  const isFavorite = useAppSelector(state => 
+    state.Favoritos.some(fav => fav.id === pokemon.id)
+  );
+//usa CardPokemon para solucionar inconsistencia entre lo que espera recibir y recibe
+  const borrarFav = () => {
+    dispatch(deleteFav(pokemon));
   };
 
-  const add = (fav: CardPokemon) => {
-     console.log('2. Despachando addFav con:', fav.name); 
-    dispatch(addFav(fav));
+  const add = () => {
+     console.log('2. Despachando addFav con:', pokemon.name); 
+    dispatch(addFav(pokemon));
   };
-  return { borrarFav, add }}
+  const handleToggleFavorite = () => {
+        if (isFavorite) {
+            borrarFav();
+        } else {
+            add();
+        }
+    };
+  
+   return { borrarFav, add ,isFavorite, handleToggleFavorite}
+  }
