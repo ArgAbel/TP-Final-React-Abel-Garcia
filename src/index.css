@@ -15,20 +15,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 40px;
-    padding: 10px 0;
+    gap: 20px;
+   
     z-index: 1000;
-   background-color: #ffffff;
+   background-color: #faf8f8;
     border-bottom: 1px solid #ccc; 
     margin-bottom: 10px; 
-    justify-content: space-between;
+    
 }
 
 
 body {
-background-image: url(assets/Gemini_Generated_Image_2.png);
+background-image: url(assets/fondomejorado.jpg);
 background-size: cover;  
 min-height: 100vh;
-
+margin: 0;
 }
 

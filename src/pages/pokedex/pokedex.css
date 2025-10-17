@@ -1,0 +1,77 @@
+.contenedor-principal {
+  display: grid;
+
+  grid-template-areas:
+    "header header"
+    "imagen datos";
+
+  grid-template-columns: 1.5fr 1fr;
+  gap: 20px;
+  max-width: 1000px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+@media (max-width: 430px) {
+  .contenedor-principal {
+    grid-template-areas:
+      "header"
+      "imagen"
+      "datos";
+    grid-template-columns: 100%;
+  }
+  .grid-imagen {
+    min-height: 250px;
+  }
+}
+
+.grid-header {
+  grid-area: header;
+  text-align: center;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #333;
+}
+
+.grid-imagen {
+  grid-area: imagen;
+  background-color: #f0f0f0;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.grid-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  max-height: 500px;
+  border-radius: 8px;
+}
+
+.grid-datos {
+  grid-area: datos;
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 10px;
+}
+
+.casillero {
+  background-color: #e0f7fa;
+  border: 1px solid #00bcd4;
+  padding: 15px 10px;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+meter#ataque {
+  width: 350px;
+  /* Define la altura de la barra. ¡Esto la hace más grande! */
+  height: 30px;
+  border: none;
+  margin-bottom: 20px;
+}
