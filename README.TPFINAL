@@ -1,0 +1,76 @@
+PokéPagina React + TypeScript + Redux (Vite)
+
+Este proyecto es una aplicación web interactiva que funciona como una Pokédex, permitiendo a los usuarios explorar una lista de Pokémon, ver detalles específicos y gestionar una lista de favoritos persistente. 
+Está construido con React y TypeScript y utiliza Redux Toolkit para la gestión del estado y Redux Persist para mantener los favoritos incluso después de recargar la página.
+
+## 🚀 Tecnologías Clave
+
+* **Framework:** React
+* **Bundler:** Vite
+* **Lenguaje:** TypeScript
+* **Gestión de Estado:** Redux Toolkit
+* **Persistencia de Estado:** Redux Persist
+* **Estilos/Componentes UI:** Material UI (MUI)
+* **Routing:** React Router DOM
+* **API:** PokeAPI (v2)
+
+## 📦 Instalación y Configuración del Proyecto
+
+Para levantar y ejecutar el proyecto en tu entorno local, sigue estos pasos:
+
+### 1. Requisitos Previos
+
+Asegúrate de tener **Node.js** (se recomienda la versión LTS) y **npm** o **yarn** instalados.
+
+### 2. Clonar el Repositorio
+
+```bash
+git clone <URL_DE_TU_REPOSITORIO>
+cd <NOMBRE_DE_TU_CARPETA>
+
+Bash
+
+# Si usas npm
+npm install react react-dom typescript @types/react @types/react-dom vite @vitejs/plugin-react-ts
+
+# Instalación de Redux Toolkit y Redux Persist
+npm install @reduxjs/toolkit react-redux redux-persist
+
+# Instalación de React Router DOM
+npm install react-router-dom
+
+# Instalación de Material UI (MUI) y sus íconos
+npm install @mui/material @mui/icons-material @emotion/react @emotion/styled
+
+# Instalación de tipos para Redux Persist (si es necesario y no está incluido en el paquete principal)
+npm install @types/redux-persist --save-dev
+Bash
+
+# Usando npm
+npm run dev
+a aplicación estará disponible en http://localhost:5173/
+
+Estructura de Componentes
+La aplicación está organizada en varios componentes principales que gestionan la navegación, la presentación de la lista y la vista detallada.
+App	App.tsx	Componente raíz. Define las rutas de la aplicación (/, /ListaPokes, /pokemon/:id, /Favoritos) utilizando React Router DOM y renderiza la barra de navegación.
+
+Index	pages/index/Index.tsx	La página de inicio de la aplicación. Contiene un encabezado con la imagen de Pokémon, botones de navegación (Go to Favourites!!, Go To Catch em all!!) y un video de YouTube incrustado.
+ListaPokes	pages/pokelista/Pokelista.tsx	Muestra la lista paginada de Pokémon. Gestiona la lógica de carga, paginación (Cargar más), y estados de loading y error. Es un contenedor de las tarjetas individuales.
+PokemonCardItem	Anidado en ListaPokes.tsx	Componente que representa una tarjeta individual de Pokémon. Usa varios componentes de MUI (Card, CardMedia, Avatar, FavoriteIcon) y el hook useFavActions para manejar los favoritos.
+Pokedex	pages/pokedex/Pokedex.tsx	La vista detallada de un Pokémon. Obtiene los datos de la PokeAPI usando el id de la URL. Muestra la imagen, tipos, estadísticas (usando barras meter y progress) y habilidades en un formato de casillero.
+avBar	navbar/NavBar.tsx	La barra de navegación superior. Usa componentes de MUI (AppBar, Toolbar) y React Router DOM (NavLink, Link). Incluye un menú toggle para vistas móviles.
+Gestión de Estado (Redux Toolkit)
+La aplicación usa Redux Toolkit para manejar el estado global.
+CardSlice.ts	Lista de Pokémon	Almacena la lista principal de CardPokemon, el offset para la paginación, el estado de loading, y los errores. Utiliza thunks para realizar la llamada asíncrona a la PokeAPI.
+FavSlices.ts	Favoritos	Almacena la lista de Pokémon favoritos. Contiene reducers para addFav (añadir) y deleteFav (eliminar).
+index.ts (Store)	Configuración de Store	Combina los reducers y configura la tienda. Importante: Utiliza Redux Persist con persistStore y persistReducer para guardar el slice Favoritos en el almacenamiento local del navegador.
+useHook.ts (Hooks)	Lógica de Favoritos	Provee custom hooks tipados (useAppDispatch, useAppSelector) y el hook useFavActions que encapsula la lógica para verificar si un Pokémon es favorito y la función para añadir/eliminarlo.
+
+Material UI (MUI)
+Se utiliza Material UI para proporcionar componentes de diseño robustos y consistentes.
+Button, IconButton	Navegación en Index.tsx y acciones en PokemonCardItem.
+Card, CardMedia, CardHeader	Estructura principal de las tarjetas de Pokémon en ListaPokes.tsx.
+AppBar, Toolbar, MenuIcon	Creación de la barra de navegación responsiva en NavBar.tsx.
+Avatar	Muestra el ID del Pokémon en la esquina superior de la tarjeta.
+FavoriteIcon	Usado en PokemonCardItem para indicar y gestionar el estado de favorito (rojo si es favorito).
+Box, Typography	Contenedores y tipografía general para manejar el diseño y los mensajes de estado.
