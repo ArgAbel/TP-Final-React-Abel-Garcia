@@ -3,8 +3,7 @@ import { type PokemonDetailed } from "../../../src/assets/utils/Interfaces.ts";
 import { useParams } from "react-router-dom";
 import { type PokedexParams } from "../../../src/assets/utils/Interfaces.ts";
 const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
-import Box from "@mui/material/Box";
-import LinearProgress from "@mui/material/LinearProgress";
+
 import "./pokedex.css";
 
 export function Pokedex() {
@@ -72,7 +71,6 @@ export function Pokedex() {
     { label: "Tipo", value: typesString },
     { label: "Altura", value: `${PokemonDetail.height / 10} m` },
     { label: "Peso", value: `${PokemonDetail.weight / 10} kg` },
-    // Llenar con las 4 estadísticas principales
     ...mainStats.map((stat) => ({
       label: capitalize(stat.stat.name),
       value: stat.base_stat,
@@ -87,8 +85,6 @@ export function Pokedex() {
       });
     }
   }
-
-  // Si aún no tenemos 8, rellenar con un placeholder (poco probable en Pokémon)
   while (casilleroData.length < 8) {
     casilleroData.push({ label: "Dato", value: "N/A" });
   }
@@ -96,17 +92,14 @@ export function Pokedex() {
     <>
       <div className="contenedor-principal">
         <header className="grid-header">
-          {/* Título: Nombre y ID del Pokémon */}
           <h1>{capitalize(PokemonDetail.name)}</h1>
         </header>
 
         <div className="grid-imagen">
-          {/* Imagen del Pokémon */}
           <img src={imageUrl} alt={`Arte oficial de ${PokemonDetail.name}`} />
         </div>
 
         <div className="grid-datos">
-          {/* Renderizar los 8 casilleros con los datos extraídos */}
           {casilleroData.map((data, index) => (
             <div key={index} className="casillero">
               <strong>{data.label}:</strong> {data.value}
@@ -114,17 +107,6 @@ export function Pokedex() {
           ))}
         </div>
       </div>
-      <Box sx={{ width: "100%" }}>
-        <LinearProgress />
-        <label htmlFor="descarga">Progreso de la descarga:</label>
-        <progress id="descarga" value="75" max="100">
-          75%
-        </progress>
-        <label htmlFor="ataque">Ataque Base:</label>
-        <meter id="ataque" value="244" min="0" max="255">
-          244/255
-        </meter>
-      </Box>
     </>
   );
 }
