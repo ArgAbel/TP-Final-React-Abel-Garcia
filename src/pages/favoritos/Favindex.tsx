@@ -1,5 +1,3 @@
-import "./favoritos.css";
-
 import { useNavigate } from "react-router-dom";
 import { type CardPokemon } from "../../assets/utils/Interfaces.ts";
 import { useAppSelector } from "../../hooks/useHook.ts";
